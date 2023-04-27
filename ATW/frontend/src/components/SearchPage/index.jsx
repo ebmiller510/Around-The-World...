@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Card from '../Card'
+import Card from '../CountryCard'
 
 export default function SearchPage(props) {
     const  [searchString, setSearchString] = useState('')
@@ -22,10 +22,11 @@ export default function SearchPage(props) {
 
     return (
         <>
-            <form onSubmit={handleSearchSubmit} className='text-center' >
+            <form onSubmit={handleSearchSubmit} className='text-center flex flex-wrap flex-col ' >
+
                 <label 
                     htmlFor='search'
-                    className='text-center font-medium'
+                    className='text-center font-medium text-slate-400 text-2xl'
                     >Search for a Country
                 </label>
 
@@ -38,7 +39,7 @@ export default function SearchPage(props) {
 
                     />
 
-                <button type='submit'>Search</button>
+                <button type='submit' className='text-slate-400 border border-white'>Search</button>
             
             
             </form>

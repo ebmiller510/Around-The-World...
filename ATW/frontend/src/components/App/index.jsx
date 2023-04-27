@@ -7,6 +7,8 @@ import Card from '../CountryCard'
 import HomePage from '../HomePage'
 import DetailsPage from '../DetailsPage'
 import SearchPage from '../SearchPage'
+// import { getCountryData } from '../../../utils/backend'
+
 // import styles
 import './styles.css'
 
@@ -16,15 +18,15 @@ function App() {
   const [country, setCountry] = useState([])
   const [detailsPage, setDetailsPage] = useState({})
   
-  console.log(import.meta.env.VITE_TEST_VAR)
-    //async function to gather API data
+    
+  //  async function to gather API data
     async function getData(){
-      const response = await fetch('https://restcountries.com/v3.1/all')
-      const apiResponse = await response.json()
-      setCountry(apiResponse)
-      console.log(apiResponse)
-      return apiResponse
-      }
+    const response = await fetch('https://restcountries.com/v3.1/all')
+    const apiResponse = await response.json()
+    setCountry(apiResponse)
+    console.log(apiResponse)
+    return apiResponse
+    } 
 
 
    //useEffect to run getData function
@@ -40,20 +42,33 @@ function App() {
 
 
   return (
+
     <div className="landing-page">
       <nav>
-      <ul className="flex ">
-        <h1 className=''>Around The World</h1>
+      <ul className="flex h-80 justify-center py-60 flex-wrap flex-col ">
+        <div>
 
-            <li className="mr-3">
-            <a className="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="/search">Search</a>
-            </li>
-  
-          <li className="mr-3">
-            <a className="inline-block border border-white rounded hover:border-gray-200 text-blue-500 hover:bg-gray-200 py-1 px-3" href="/">Home</a>
-          </li>
+            <div className=''>
+              <h1 className='text-slate-400/75 text-12xl'>Around The World</h1>
+            </div>
 
-          </ul>
+            <div className='py-10'>
+                <a className="inline-block rounded text-blue-500 mr-10 " href="/" >
+                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                    <span>Home</span>
+                  </button>
+                </a>
+
+                <a className="inline-block rounded text-blue-500 ml-10" href="/search">
+                  <button variant="gradient" size="sm" className="py-2 px-10 hidden lg:inline-block hover:bg-gray-200" href="/search">
+                    <span>Search</span>
+                  </button>
+                </a>
+            </div>
+
+
+          </div>
+      </ul>
 
       </nav>
       <div className='header'>
@@ -63,9 +78,10 @@ function App() {
       </div>
 
     <Routes>
-      <Route path='/' element={<HomePage galleryContent={cardGallery}/>}/>
-      <Route path='/details/:id' element={<DetailsPage detailsPage={detailsPage}/>}/>
+      <Route path='/' element={<HomePage galleryContent={cardGallery}/>}  />
+      <Route path='/details/:id' element={<DetailsPage detailsPage={detailsPage} updateLandmark={setDetailsPage} updateComments={setDetailsPage}/>}  />
       <Route path='/search' element={<SearchPage  setDetailsPage={setDetailsPage}/>} />
+      <Route path='*' element={<h1>404 Not Found</h1>}/>
     </Routes>
 
     </div>

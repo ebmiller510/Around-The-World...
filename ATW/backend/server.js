@@ -2,6 +2,7 @@
 --------------------------------------------------------------- */
 require('dotenv').config()
 const express = require('express');
+const cors = require('cors')
 const path = require('path')
 
 
@@ -13,6 +14,8 @@ const db = require('./models');
 /* Require the routes in the controllers folder
 --------------------------------------------------------------- */
 const commentsCtrl = require('./controllers/comments')
+const landmarksCtrl = require('./controllers/landmarks')
+const usersCtrl = require('./controllers/users')
 
 
 /* Create the Express app
@@ -25,6 +28,10 @@ const app = express();
 // body parser - used for POST/PUT/PATCH routes:
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+app.use(cors())
+
+app.use(express.static(path.join(path.dirname(__dirname), 'frontend', 'dist')))
+
 
 
 /* Mount routes
@@ -32,6 +39,8 @@ app.use(express.json())
 // This tells our app to look at the `controllers/comments.js` file 
 // to handle all routes that begin with `localhost:3000/api/applications`
 app.use('/api/comments', commentsCtrl)
+app.use('/api/landmarks', landmarksCtrl)
+app.use('/api/users', usersCtrl)
 
 
 /* Tell the app to listen on the specified port

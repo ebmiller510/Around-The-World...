@@ -11,4 +11,5 @@ const mongodbUri = process.env.MONGODBURI;
 module.exports = {
     Comment: require('./comments'),
     Landmark: require('./landmarks'),
+    User: require('./user'),
 }
