@@ -21,7 +21,6 @@ export default function Card({ countreeCard, updateDetailPage }) {
                     <span>{languageArray}</span>
     )
     ) : <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">No language data available</span>
-    console.log(countreeCard.id)
 
   return (
     <Link to={`/details/${countreeCard.name.common}`} onClick={()=> { updateDetailPage(countreeCard) }}>
