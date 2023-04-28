@@ -47,9 +47,15 @@ router.get('/country/:countryName', function (req, res) {
 })
 
 // create route POST /api/landmarks
-router.post('/', (req, res) => {
-    db.Landmark.create(req.body)
-        .then(landmark => res.json(landmark))
+router.post('/', authMiddleware, (req, res) => {
+    // Perform any actions that require authorization
+    db.Landmark.create({
+        ...req.body,
+        // The auth middleware validated the JWT token 
+        // and added the decoded payload to the req.user object
+        userId: req.user.id
+    })
+        .then(comment => res.json(comment))
 })
 
 // show route GET /api/landmarks/:id
@@ -59,19 +65,32 @@ router.get('/:id', function (req, res) {
 })
 
 // update route PUT /api/landmarks/:id
-router.put('/:id', (req, res) => {
-    db.Landmark.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-    )
-        .then(landmark => res.json(landmark))
+router.put('/:id', authMiddleware, async (req, res) => {
+    // Check if the user who sent the update request is the same user who created the comment
+    const userLandmark = await db.Landmark.findById(req.params.id)
+    if (userLandmark.userId.toString() === req.user.id) {
+        // If it is the original author, update the comment
+        const newLandmark = await db.Landmark.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        )
+        res.json(newLandmark)
+    } else {
+        res.status(401).json({ message: 'Invalid user or token' });
+    }
 })
 
 // destroy route DELETE /api/landmarks/:id
-router.delete('/:id', (req, res) => {
-    db.Landmark.findByIdAndRemove(req.params.id)
-        .then(() => res.send('You deleted landmark ' + req.params.id))
+router.delete('/:id', authMiddleware, async (req, res) => {
+    // Check if the user who sent the delete request is the same user who created the comment
+    const userLandmark = await db.Landmark.findById(req.params.id)
+    if (userLandmark.userId.toString() === req.user.id) {
+        const deletedLandmark = await db.Landmark.findByIdAndRemove(req.params.id)
+        res.send('You deleted comment ' + deletedLandmark._id)
+    } else {
+        res.status(401).json({ message: 'Invalid user or token' });
+    }
 })
 
 module.exports = router
