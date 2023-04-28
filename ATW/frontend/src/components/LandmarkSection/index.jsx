@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { postLandmark, getLandmarks } from '../../../utils/backend'
+import Landmark from '../Landmark'
 
-
-export default function LandmarkSection({ countryName }) {
+export default function LandmarkSection({ countryName, updateLandmarks }) {
     //saving form to state 
     const [landmark, setLandmark] = useState([])
     const [showLandmarkForm, setShowLandmarkForm] = useState(false)
@@ -50,17 +50,17 @@ export default function LandmarkSection({ countryName }) {
     );
     if (landmark.length > 0) {
         landmarkElements = landmark.map(landmark => (
-            <div key={landmark._id}>
-                <p>{landmark.name} --- {landmark.country}</p>
-                <button className=''>Edit</button>
-                <button className=''>Delete</button>
-            </div>
+            <Landmark
+            key={landmark._id}
+            data={landmark}
+            refreshLandmarks={refreshLandmarks}
+            />
         ));
     }
 
     let btnText = 'Add Landmark'
     if (showLandmarkForm) {
-        btnText = 'Close Form'
+        btnText = 'Close'
     }
 
     return (
@@ -92,13 +92,6 @@ export default function LandmarkSection({ countryName }) {
                         onChange={handleInputChange}
                     />
                     <br />
-                    {/* <textarea
-                        name="content"
-                        className="p-2 my-2 h-[100px] w-full bg-gray-100"
-                        placeholder="Share your thoughts!"
-                        value={landmarkFormData.content}
-                        onChange={handleInputChange}
-                    /> */}
                     <button
                         type="submit"
                         className="text-white hover:bg-gray-800 font-bold py-2 px-4 bg-gray-700 rounded cursor-pointer mr-2">
