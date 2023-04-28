@@ -55,7 +55,7 @@ router.post('/', authMiddleware, (req, res) => {
         // and added the decoded payload to the req.user object
         userId: req.user.id
     })
-        .then(comment => res.json(comment))
+        .then(landmark => res.json(landmark))
 })
 
 // show route GET /api/landmarks/:id
@@ -87,7 +87,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     const userLandmark = await db.Landmark.findById(req.params.id)
     if (userLandmark.userId.toString() === req.user.id) {
         const deletedLandmark = await db.Landmark.findByIdAndRemove(req.params.id)
-        res.send('You deleted comment ' + deletedLandmark._id)
+        res.send('You deleted landmark ' + deletedLandmark._id)
     } else {
         res.status(401).json({ message: 'Invalid user or token' });
     }

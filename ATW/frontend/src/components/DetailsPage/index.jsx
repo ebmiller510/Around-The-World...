@@ -3,10 +3,19 @@ import { useEffect, useState } from 'react'
 import { getLandmarks, getComments } from '../../../utils/backend'
 import LandmarkSection from '../LandmarkSection'
 import CommentSection from '../CommentSection'
+import { getMovies } from '../../../utils/api'
 
- export default function DetailsPage({ detailsPage, updateLandmarks, updateComments }) {
+
+ export default function DetailsPage({ detailsPage }) {
     const  [landmarks, setLandmarks] = useState([])
     const [comments, setComments] = useState([])
+    const [movies, setMovies] = useState([])
+
+    // for movies
+    useEffect(() => {
+        getMovies(  )
+        .then(movies => setMovies(movies))
+    }, [])
 
     // for landmarks model
     useEffect(() => {
@@ -47,6 +56,10 @@ import CommentSection from '../CommentSection'
             <p> Region: { detailsPage.continents }</p>
             {/* languages spoken */}
                 <p>{langs}</p>
+            {/* movies in langs of this country */}
+                <MovieSection />
+                {/*pass state here */}
+
             {/* currencies */}
                 <p>Acceptable Currency {currencyArray}</p>
             {/* population */}
@@ -61,7 +74,7 @@ import CommentSection from '../CommentSection'
 
         <div className='landmarksection'>
             <div className='landmarks'>
-            <LandmarkSection landmarks={landmarks} />
+            <LandmarkSection landmarks={landmarks} countryName={detailsPage.name.common} updateLandmarks={setLandmarks} />
             </div>
         </div>
 

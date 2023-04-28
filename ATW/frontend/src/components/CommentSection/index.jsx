@@ -42,19 +42,14 @@ export default function CommentSection({ countryName, updateComments }) {
 
     // Execute form submission logic
     function handleSubmit(event) {
-        // prevent the page from reloading
         event.preventDefault()
-        // clear the form
         setCreateFormData({
             name: '',
             comment: ''
         })
-        // close the form
         setShowCreateForm(false)
-        // create the comment in the backend
         postComment({ ...createFormData, countryName: countryName })
             .then(() => refreshComments())
-        // console.log(createFormData)
     }
 
 

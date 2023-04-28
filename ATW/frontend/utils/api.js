@@ -8,3 +8,9 @@
     } 
 
 // async function to gather movie API data
+   
+export async function getMovies(){
+    const res = await fetch('')
+    const apiRes = await res.json()
+    return apiRes
+    }
