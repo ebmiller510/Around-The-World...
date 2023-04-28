@@ -65,10 +65,18 @@ router.get('/country/:countryName', function (req, res) {
 // creates a new comment document using the form data, 
 // and redirects the user to the new comment's show page
 // POST /api/comments
-router.post('/', (req, res) => {
-    db.Comment.create(req.body)
+router.post('/', authMiddleware, (req, res) => {
+    // Perform any actions that require authorization
+    // console.log(req.body)
+    db.Comment.create({
+        ...req.body,
+        // The auth middleware validated the JWT token 
+        // and added the decoded payload to the req.user object
+        userId: req.user.id
+    })
         .then(comment => res.json(comment))
 })
+
 
 
 // Show Route (GET/Read): Will display an individual comment document
@@ -83,22 +91,42 @@ router.get('/:id', function (req, res) {
 // edits the specified comment document using the form data,
 // and redirects the user back to the show page with the updated info.
 // PUT /api/comments/:id
-router.put('/:id', (req, res) => {
-    db.Comment.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-    )
-        .then(comment => res.json(comment))
+router.put('/:id', authMiddleware, async (req, res) => {
+    // console.log(req.body)
+    // Check if the user who sent the update request is the same user who created the comment
+    const userComment = await db.Comment.findById(req.params.id)
+    // console.log(req.params.id)
+    // console.log(userComment)
+    console.log(userComment.userId)
+    if (userComment.userId.toString() === req.user.id) {
+        console.log('inside of if statement')
+        // If it is the original author, update the comment
+        const newComment = await db.Comment.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        )
+        res.json(newComment)
+    } else {
+        console.log('inside of else statement')
+        res.status(401).json({ message: 'Invalid user or token' });
+    }
 })
+
 
 // Destroy Route (DELETE/Delete): This route deletes a comment document 
 // using the URL parameter (which will always be the comment document's ID)
-router.delete('/:id', (req, res) => {
-    // find document by id and delete it 
-    db.Comment.findByIdAndRemove(req.params.id)
-        .then(() => res.send('You deleted comment ' + req.params.id))
+router.delete('/:id', authMiddleware, async (req, res) => {
+    // Check if the user who sent the delete request is the same user who created the comment
+    const userComment = await db.Comment.findById(req.params.id)
+    if (userComment.userId.toString() === req.user.id) {
+        const deletedComment = await db.Comment.findByIdAndRemove(req.params.id)
+        res.send('You deleted comment ' + deletedComment._id)
+    } else {
+        res.status(401).json({ message: 'Invalid user or token' });
+    }
 })
+
 
 
 /* Export these routes so that they are accessible in `server.js`
