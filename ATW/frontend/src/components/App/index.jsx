@@ -1,12 +1,15 @@
 // NODE packages
 import { useState, useEffect } from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Link} from 'react-router-dom'
 
 // import components 
 import Card from '../CountryCard'
 import HomePage from '../HomePage'
 import DetailsPage from '../DetailsPage'
 import SearchPage from '../SearchPage'
+import AuthFormPage from '../AuthFormPage'
+import { getCountries } from '../../../utils/api'
+
 // import { getCountryData } from '../../../utils/backend'
 
 // import styles
@@ -18,20 +21,10 @@ function App() {
   const [country, setCountry] = useState([])
   const [detailsPage, setDetailsPage] = useState({})
   
-    
-  //  async function to gather API data
-    async function getData(){
-    const response = await fetch('https://restcountries.com/v3.1/all')
-    const apiResponse = await response.json()
-    setCountry(apiResponse)
-    console.log(apiResponse)
-    return apiResponse
-    } 
-
-
    //useEffect to run getData function
     useEffect(() => {
-      getData()
+      getCountries()
+        .then(country => setCountry(country))
     }, [])
   
   let cardGallery = <h2>Loading Around The World...</h2>
@@ -64,6 +57,19 @@ function App() {
                     <span>Search</span>
                   </button>
                 </a>
+                {/* log in and sign up add links */}
+                <Link to="/auth/login" className="inline-block rounded text-blue-500 mr-10 ">
+                  <button variant="gradient" size="sm" className=" ml-10 py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                    <span>Log In</span>
+                  </button>
+                </Link>
+
+                <Link to="/auth/signup" className="inline-block rounded text-blue-500 mr-10 " >
+                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                    <span>Sign Up</span>
+                  </button>
+                </Link>
+
             </div>
 
 
@@ -82,6 +88,8 @@ function App() {
       <Route path='/details/:id' element={<DetailsPage detailsPage={detailsPage} updateLandmark={setDetailsPage} updateComments={setDetailsPage}/>}  />
       <Route path='/search' element={<SearchPage  setDetailsPage={setDetailsPage}/>} />
       <Route path='*' element={<h1>404 Not Found</h1>}/>
+      <Route path="/auth/:formType" element={<AuthFormPage />} />
+
     </Routes>
 
     </div>

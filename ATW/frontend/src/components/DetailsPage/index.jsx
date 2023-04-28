@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
+
 import { getLandmarks, getComments } from '../../../utils/backend'
 import LandmarkSection from '../LandmarkSection'
 import CommentSection from '../CommentSection'
 
  export default function DetailsPage({ detailsPage, updateLandmarks, updateComments }) {
     const  [landmarks, setLandmarks] = useState([])
-    // const [comments, setComments] = useState([])
+    const [comments, setComments] = useState([])
 
     // for landmarks model
     useEffect(() => {
@@ -13,14 +14,13 @@ import CommentSection from '../CommentSection'
         getLandmarks(detailsPage.name.common)
         // set the state of the landmarks 
         .then(landmarks => setLandmarks(landmarks))
+    }, [])
 
-
-    })
     // // for comments model
-    // useEffect(() => {
-    //     getComments(detailsPage.name.common)
-    //     .then(comments => setComments(comments))
-    // })
+    useEffect(() => {
+        getComments(detailsPage.name.common)
+        .then(comments => setComments(comments))
+    }, [])
 
 // languages is an object, so we need to convert to be iterable 
         let languageArray = ''
@@ -55,7 +55,7 @@ import CommentSection from '../CommentSection'
         <div className='commentsection'>
             <div className='comments'>
                 {/* conditionally render comment name and comment */}
-                <CommentSection comments={comments} />
+                <CommentSection comments={comments} countryName={detailsPage.name.common} updateComments={setComments}/>
             </div>
         </div>
 
