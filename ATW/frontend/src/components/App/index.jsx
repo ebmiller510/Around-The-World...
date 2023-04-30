@@ -20,13 +20,29 @@ function App() {
   // Q: why is the use state an empty array vs 0 in other apps 
   const [country, setCountry] = useState([])
   const [detailsPage, setDetailsPage] = useState({})
+  const [movingText, setMovingText] = useState('Around The World...')
+
   
    //useEffect to run getData function
     useEffect(() => {
       getCountries()
         .then(country => setCountry(country))
+
+    //  update the moving text
+    const interval = setInterval(() => {
+      // slicing the first character to the end of the string
+      setMovingText(text => text.slice(1) + text[0])
+    }, 230) 
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval)
+
+
     }, [])
   
+
+    
+
   let cardGallery = <h2>Loading Around The World...</h2>
 
   if (country.length > 0) {
@@ -38,35 +54,35 @@ function App() {
 
     <div className="landing-page">
       <nav>
-      <ul className="flex h-80 justify-center py-60 flex-wrap flex-col ">
+      <ul className="flex h-60 justify-center py-40 flex-wrap flex-col ">
         <div>
 
             <div className=''>
-              <h1 className='text-slate-400/75 text-12xl'>Around The World</h1>
+              <h1 className=' font-headerz text-slate-400/75 text-8xl animation:ease-in-out'>{movingText}</h1>
             </div>
 
             <div className='py-10'>
                 <a className="inline-block rounded text-blue-500 mr-10 " href="/" >
                   <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
-                    <span>Home</span>
+                    <span className='font-headerz'>Home</span>
                   </button>
                 </a>
 
-                <a className="inline-block rounded text-blue-500 ml-10" href="/search">
+                <a className="inline-block rounded text-blue-500 mr-10" href="/search">
                   <button variant="gradient" size="sm" className="py-2 px-10 hidden lg:inline-block hover:bg-gray-200" href="/search">
-                    <span>Search</span>
+                    <span className='font-headerz'>Search</span>
                   </button>
                 </a>
                 {/* log in and sign up add links */}
                 <Link to="/auth/login" className="inline-block rounded text-blue-500 mr-10 ">
-                  <button variant="gradient" size="sm" className=" ml-10 py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
-                    <span>Log In</span>
+                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                    <span className='font-headerz'>Log In</span>
                   </button>
                 </Link>
 
                 <Link to="/auth/signup" className="inline-block rounded text-blue-500 mr-10 " >
                   <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
-                    <span>Sign Up</span>
+                    <span className='font-headerz'>Sign Up</span>
                   </button>
                 </Link>
 

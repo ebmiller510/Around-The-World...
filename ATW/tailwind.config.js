@@ -7,6 +7,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'headerz': ['"Alegreya Sans SC"', 'sans-serif'],
+        'antonio': ['"Antonio"', 'sans-serif'],
+        'thin': ['"Poiret One"', 'cursive']
+      },
     },
   },
   plugins: [],

@@ -24,12 +24,12 @@ export default function Card({ countreeCard, updateDetailPage }) {
 
   return (
     <Link to={`/details/${countreeCard.name.common}`} onClick={()=> { updateDetailPage(countreeCard) }}>
-        <div>
+        <div className='hover:scale-110 hover:ease-out duration-200'>
             <div className="p-10">  
-                <div className="max-w-sm rounded overflow-hidden shadow-lg ">
+                <div className="max-w-sm rounded overflow-hidden shadow-xl border border-opacity-10 hover:border-2 ">
                 <img className="w-full"  src={countreeCard.flags.png} alt={countreeCard.flags.alt}/>
                 <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{countreeCard.name.common}</div>
+                    <div className=" font-headerz font-bold text-3xl mb-2">{countreeCard.name.common}</div>
                     <p className="text-gray-700 text-base">
                         {/* Currencies: {countreeCard.currencies} */}
                     </p>
