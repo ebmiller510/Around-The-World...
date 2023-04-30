@@ -55,7 +55,7 @@ export default function CommentSection({ countryName, updateComments }) {
 
     // conditionally render comment
     let commentElements = (
-        <p key="0" className="text-center">
+        <p key="0" className="text-center mb-5 mt-8">
           No comments yet. Be the first to comment!
         </p>
       );
@@ -76,22 +76,27 @@ export default function CommentSection({ countryName, updateComments }) {
     }
 
     return (
-        <div className='comment-section bg-gray-300 rounded-lg p-4 pb-10 mt-4 space-y-4 relative'>
-            <h2 className='viewer-reviews'>Comments</h2>
+        <div className=' relative h-fit w-11/12 bg-white rounded-lg border pt-4 mx-auto mt-20'>
+            <div className='absolute px-2 top-0 -left-[0.5] bg-indigo-200 rounded-tl-lg rounded-br-lg'>
+                <h2 className='viewer-reviews text-md font-semibold text-gray-800'>Comments</h2>
+            </div>
+
             <button
                 type='button'
                 onClick={toggleCreateForm}
-                className="top-0 right-5 absolute text-white hover:bg-green-800 font-bold py-2 px-4 bg-green-900 rounded cursor-pointer mr-2"
+                className=" inline-block rounded-full px-3 py-1 text-sm font-semibold absolute top-2 right-2 bg-indigo-200"
             >
                 {btnText}
             </button>
             {
-                showCreateForm && <form
+                showCreateForm && 
+                
+                <form
                     onSubmit={handleSubmit}
-                    className="bg-gray-100 rounded-lg p-4 my-4 border-gray-700 border-2 w-[80vw] mx-auto text-right">
+                    className="bg-indigo-100 rounded-lg p-4 my-8 border-gray-700 border-2 w-[80vw] mx-auto text-right">
                     <input
                         name="name"
-                        className="px-2 py-1 w-full bg-gray-100"
+                        className="px-2 py-1 w-full bg-indigo-100 border border-gray-700 rounded"
                         placeholder="Your name"
                         value={createFormData.name}
                         onChange={handleInputChange}
@@ -99,7 +104,7 @@ export default function CommentSection({ countryName, updateComments }) {
                     <br />
                     <textarea
                         name="comment"
-                        className="p-2 my-2 h-[100px] w-full bg-gray-100"
+                        className="p-2 my-2 h-[100px] px-2 py-1 w-full bg-indigo-100 border border-gray-700 rounded"
                         placeholder="Share your thoughts!"
                         value={createFormData.comment}
                         onChange={handleInputChange}

@@ -13,7 +13,7 @@ return (
                 <br />
                 <span className="text-sm font-semibold uppercase tracking-wide ">"{movie.title}"</span>
                 
-                <p class="text-white-600 text- leading-5 mt-1 ">{movie.overview}</p>
+                <p className="text-white-600 text- leading-5 mt-1 ">{movie.overview}</p>
             </div>
           
 

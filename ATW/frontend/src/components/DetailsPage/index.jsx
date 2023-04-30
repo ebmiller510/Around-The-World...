@@ -256,13 +256,13 @@ import MovieCard from '../MovieCard'
    
 
     return (
-      <div>
+      <div className='w-screen'>
          <h1 className='font-antonio text-5xl py-4'>Details About { detailsPage.name.common }</h1>
          <div className='flex justify-center'>
-            <img className="w-4/6  border-solid"  src={detailsPage.flags.png} alt={detailsPage.flags.alt}/>
+            <img className="w-4/6 border border-solid"  src={detailsPage.flags.png} alt={detailsPage.flags.alt}/>
          </div>
 
-            <div className='flex justify-center m-10'>           
+            <div className='flex justify-center justify-between m-10 mr-10 ml-10 '>           
                 <p className='font-antonio text-xl mr-5'><strong>Capital: </strong> { detailsPage.capital }</p>
                 <p className='font-antonio text-xl ml-5 mr-5'> <strong>Region: </strong>{ detailsPage.continents }</p>
                     {/* currencies */}
