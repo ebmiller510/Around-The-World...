@@ -7,8 +7,22 @@ Around the World is a web application built using the MERN (MongoDB, Express, Re
 ## Getting Started
 
 This app has been deployed via Heroku. You can view it at https://international-insight.herokuapp.com/
-
 ---It is live as of May 1, 2023---
+
+<br/>
+
+### If you'd like to build off of this app:
+
+- fork and clone this repo to your local machine
+
+THEN
+
+- run `npm run frontend` for frontend architecture
+- run `npm run backend` for backend development
+
+OR
+
+- run `npm run start` to test both back and front ends simultaneously
 
 ## Technologies Used
 
