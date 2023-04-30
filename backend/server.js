@@ -32,10 +32,6 @@ app.use(cors())
 
 app.use(express.static(path.join(path.dirname(__dirname), 'frontend', 'dist')))
 // Any other route not matching the routes above gets routed by React
-app.get('*', (req, res) => {
-    res.sendFile(path.join(path.dirname(__dirname), 'frontend', 'dist', 'index.html'));
-});
-
 
 
 /* Mount routes
@@ -51,4 +47,8 @@ app.use('/api/users', usersCtrl)
 --------------------------------------------------------------- */
 app.listen(process.env.PORT, function () {
     console.log('Express is listening to port', process.env.PORT);
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(path.dirname(__dirname), 'frontend', 'dist', 'index.html'));
 });
