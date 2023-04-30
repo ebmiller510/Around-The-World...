@@ -27,7 +27,7 @@ function handleDelete() {
         .then(() => refreshLandmarks())
 }
 
-let landmarkElement = <div className="bg-gray-100 rounded-lg p-4 my-4 border-indigo-700 border-2 w-[80vw] mx-auto">
+let landmarkElement = <div className="bg-gray-100 rounded-lg p-4 my-4 border-indigo-700 border-2 w-full">
                             <div className="flex justify-between">
                             <div className="flex">
                                 <p className="font-bold my-2 mr-4">{data.name}</p>
@@ -55,14 +55,14 @@ if (showEditForm) {
         <input
             onChange={handleInputChange}
             value={editFormData.name}
-            className="border-2 border-gray-700 rounded-lg p-2 my-2 w-full"
+            className="px-2 py-1 w-full bg-gray-100"
             placeholder="Name of Landmark"
             name="name"
             />
         <input
             onChange={handleInputChange}
             value={editFormData.country}
-            className="border-2 border-gray-700 rounded-lg p-2 my-2 w-full"
+            className="p-2 my-2 w-full bg-gray-100"
             placeholder="Country"
             name="country"
             />
@@ -70,12 +70,12 @@ if (showEditForm) {
             <button
                 type="button"
                 onClick={() => { setShowEditForm(false) }}
-                className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded mr-2">
+                className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-red-200 mr-2">
                 Cancel
             </button>
             <button
                 type="submit"
-                className="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">
+                className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-green-200 mr-2">
                 Save
             </button>
 

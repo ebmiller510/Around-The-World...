@@ -20,6 +20,14 @@
 }
 #root{
   padding: 0;
+  margin: auto !important;
+}
+
+.landing-page{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 a {

@@ -97,7 +97,7 @@ export default function LandmarkSection({ countryName, updateLandmarks }) {
                     <br />
                     <button
                         type="submit"
-                        className="text-white hover:bg-gray-800 font-bold py-2 px-4 bg-gray-700 rounded cursor-pointer mr-2">
+                        className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-green-200 mr-2">
                         Post
                     </button>
                 </form>

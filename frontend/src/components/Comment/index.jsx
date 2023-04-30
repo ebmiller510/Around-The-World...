@@ -36,7 +36,7 @@ export default function Comment({ data, refreshComments }) {
 
     //  Default JSX of each comment
     let commentElement = <div
-        className="bg-gray-100 rounded-lg p-4 my-4 border-indigo-700 border-2 w-[80vw] mx-auto">
+        className="bg-gray-100 rounded-lg p-4 my-4 border-indigo-700 border-2 w-full">
         
         <div className="flex">
             <p className="font-bold mr-4 my-2">{data.name}</p>
@@ -73,7 +73,7 @@ export default function Comment({ data, refreshComments }) {
             <br />
             <textarea
                 name="comment"
-                className="p-2 my-2 h-[100px] w-full bg-gray-100"
+                className="p-2 my-2 h-[50px] w-full bg-gray-100"
                 placeholder="Share your thoughts!"
                 value={editFormData.comment}
                 onChange={handleInputChange}
@@ -82,13 +82,13 @@ export default function Comment({ data, refreshComments }) {
                 <button
                     type="button"
                     onClick={() => { setShowEditForm(false) }}
-                    className="text-white hover:bg-gray-800 font-bold py-2 px-4 bg-gray-700 rounded cursor-pointer mr-2">
+                    className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-red-200 mr-2">
                     Cancel
                 </button>
                 <button
                     type="submit"
-                    className="text-white hover:bg-green-800 font-bold py-2 px-4 bg-green-900 rounded cursor-pointer mr-2">
-                    Post
+                    className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-green-200 mr-2">
+                    Save
                 </button>
             </div>
         </form>
