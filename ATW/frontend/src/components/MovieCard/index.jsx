@@ -10,7 +10,7 @@ return (
                 <p className="text-gray-700 text-base">
                 </p>
             </div>
-            
+            c
             <p>Currency {currencyArray}</p>
 
             <div className="px-6 pt-4 pb-2">
