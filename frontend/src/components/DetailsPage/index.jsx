@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+
 import { getLandmarks, getComments } from '../../../utils/backend'
 import LandmarkSection from '../LandmarkSection'
 import CommentSection from '../CommentSection'
