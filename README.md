@@ -2,7 +2,8 @@
 
 Around the World is a web application built using the MERN (MongoDB, Express, React, Node.js) stack. It allows users to explore countries from around the world and learn information about them including the capital, population, official languages and related movies (and live news COMING SOON)!
 
-![home page](https://user-images.githubusercontent.com/120285721/235375858-097db1d9-faf7-490b-8bda-46cba7dfaff5.mp4)
+https://user-images.githubusercontent.com/120285721/235375858-097db1d9-faf7-490b-8bda-46cba7dfaff5.mp4
+
 
 ## Getting Started
 
