@@ -36,18 +36,23 @@ export default function Comment({ data, refreshComments }) {
 
     //  Default JSX of each comment
     let commentElement = <div
-        className="bg-gray-100 rounded-lg p-4 my-4 border-gray-700 border-2 w-[80vw] mx-auto">
-        <p className="font-bold">{data.name}</p>
-        <p className="my-2">{data.comment}</p>
+        className="bg-gray-100 rounded-lg p-4 my-4 border-indigo-700 border-2 w-[80vw] mx-auto">
+        
+        <div className="flex">
+            <p className="font-bold mr-4 my-2">{data.name}</p>
+            <p className="my-2">{data.comment}</p>
+        </div>
+        
         <div className="flex justify-end">
             <button
                 onClick={() => { setShowEditForm(true) }}
-                className="text-white hover:bg-gray-800 font-bold py-2 px-4 bg-gray-700 rounded cursor-pointer mr-2">
+                className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-indigo-200 mr-2">
+                
                 Edit
             </button>
             <button
                 onClick={handleDelete}
-                className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
+                className="inline-block rounded-full px-3 py-2 text-sm font-semibold bg-red-200 mr-2">
                 Delete
             </button>
         </div>
