@@ -41,8 +41,6 @@ function App() {
     }, [])
   
 
-    
-
   let cardGallery = <h2>Loading Around The World...</h2>
 
   if (country.length > 0) {
@@ -58,7 +56,7 @@ function App() {
         <div>
 
             <div className=''>
-              <h1 className=' font-headerz text-slate-400/75 text-8xl animation:ease-in-out'>{movingText}</h1>
+              <h1 className=' font-headerz text-white-400/75 text-8xl animation:ease-in-out border-4 border-dotted'>{movingText}</h1>
             </div>
 
             <div className='py-10'>

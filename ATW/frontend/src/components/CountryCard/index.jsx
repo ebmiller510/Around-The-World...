@@ -3,7 +3,6 @@ import './styles.css'
 
 
 export default function Card({ countreeCard, updateDetailPage }) {
-
     // currencies is an object, so we need to convert to be iterable
     let currencyArray = ''
     for(let key in countreeCard.currencies){

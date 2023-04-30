@@ -11,6 +11,12 @@ import MovieCard from '../MovieCard'
     const [comments, setComments] = useState([])
     const [movies, setMovies] = useState([])
     
+    const languages = detailsPage.languages
+    const langKeys = Object.keys(languages)
+    const firstlangkey = langKeys[0]
+    const firstLanguageValue = languages[firstlangkey];
+    // console.log(firstLanguageValue)
+
 
     // for movies
     useEffect(() => {
@@ -208,10 +214,12 @@ import MovieCard from '../MovieCard'
     }, [])
 
     
-    let movieGallery = <p>Loading {detailsPage.languages[0]} movies</p>
+    let movieGallery = <p>Loading {firstLanguageValue} movies...</p>
 
     if (movies.length > 0){
         movieGallery = movies.map((movie, index) => <MovieCard key={index} movie={movie} />)         
+    }else{
+        <p>There are no movies currently offered in {firstLanguageValue}</p>
     }
 
     // for landmarks model
@@ -245,20 +253,37 @@ import MovieCard from '../MovieCard'
         currencyArray += ' | ' + detailsPage.currencies[key].name  
     }
 
+   
+
     return (
       <div>
-        <img className="w-full"  src={detailsPage.flags.png} alt={detailsPage.flags.alt}/>
-         <h1>Details About { detailsPage.name.common }</h1>
-            <p>Capital: { detailsPage.capital }</p>
-            <p> Region: { detailsPage.continents }</p>
+         <h1 className='font-antonio text-5xl py-4'>Details About { detailsPage.name.common }</h1>
+         <div className='flex justify-center'>
+            <img className="w-4/6  border-solid"  src={detailsPage.flags.png} alt={detailsPage.flags.alt}/>
+         </div>
+
+            <div className='flex justify-center m-10'>           
+                <p className='font-antonio text-xl mr-5'><strong>Capital: </strong> { detailsPage.capital }</p>
+                <p className='font-antonio text-xl ml-5 mr-5'> <strong>Region: </strong>{ detailsPage.continents }</p>
+                    {/* currencies */}
+                <p className='font-antonio text-xl mr-5 ml-5'>Acceptable Currency {currencyArray}</p>
+                    {/* population */}
+                <p className='font-antonio text-xl ml-5'> Population: { detailsPage.population } </p> 
+            </div>
+
+            <p className='font-antonio text-xl my-5 '>Official Language(s):</p>
             {/* languages spoken */}
                 <p>{langs}</p>
+
+            
+            <p className='font-antonio text-xl mr-5 ml-5 mb-5 mt-10'>Movies in {firstLanguageValue}</p>
             {/* movies in langs of this country */}
-                <div>{movieGallery}</div>
-            {/* currencies */}
-                <p>Acceptable Currency {currencyArray}</p>
-            {/* population */}
-                <p> Population: { detailsPage.population } </p>
+                <div className=''>
+                    <div className='flex overflow-x-auto'>
+                    {movieGallery}
+                    </div>
+                </div>
+            
 
         <div className='commentsection'>
             <div className='comments'>
