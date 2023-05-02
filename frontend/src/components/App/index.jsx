@@ -51,7 +51,7 @@ function App() {
   return (
 
     <div className="landing-page">
-      <nav>
+      
       <ul className="flex h-60 justify-center py-40 flex-wrap flex-col ">
         <div>
 
@@ -59,27 +59,27 @@ function App() {
               <h1 className=' font-headerz text-white-400/75 text-8xl animation:ease-in-out border-4 border-dotted'>{movingText}</h1>
             </div>
 
-            <div className='py-10'>
-                <a className="inline-block rounded text-blue-500 mr-10 " href="/" >
-                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+            <div className='py-10 flex flex-wrap'>
+                <a className="rounded text-blue-500 mr-10 " href="/" >
+                  <button variant="gradient" size="sm" className="py-2 px-10  hover:bg-gray-200" >
                     <span className='font-headerz'>Home</span>
                   </button>
                 </a>
 
                 <a className="inline-block rounded text-blue-500 mr-10" href="/search">
-                  <button variant="gradient" size="sm" className="py-2 px-10 hidden lg:inline-block hover:bg-gray-200" href="/search">
+                  <button variant="gradient" size="sm" className="py-2 px-10 hover:bg-gray-200" href="/search">
                     <span className='font-headerz'>Search</span>
                   </button>
                 </a>
                 {/* log in and sign up add links */}
                 <Link to="/auth/login" className="inline-block rounded text-blue-500 mr-10 ">
-                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                  <button variant="gradient" size="sm" className=" py-2 px-10 hover:bg-gray-200" >
                     <span className='font-headerz'>Log In</span>
                   </button>
                 </Link>
 
                 <Link to="/auth/signup" className="inline-block rounded text-blue-500 mr-10 " >
-                  <button variant="gradient" size="sm" className=" py-2 px-10 hidden lg:inline-block hover:bg-gray-200" >
+                  <button variant="gradient" size="sm" className=" py-2 px-10 hover:bg-gray-200" >
                     <span className='font-headerz'>Sign Up</span>
                   </button>
                 </Link>
@@ -90,7 +90,7 @@ function App() {
           </div>
       </ul>
 
-      </nav>
+    
       <div className='header'>
        
           {/* <h3>Log-In or Sign-Up Here</h3> */}
